@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitness Tracker</title>
+    <link rel="icon" href="images/workout.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="homepage.css" />
+</head>
+
+<body>
+    <div class="blank-screen"></div>
+    <!-- popup msg -->
+    <div class="forms">
+        <div class="form-content">
+            <div class="title"><span>set your profile</span>
+                <div id="int-btn" class="intButton"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+
+            <div class="popup-input-button">
+                <div class="inside-popup">
+                    <p id="personalBtn" class="active-tab">Personal information</p>
+                    <p id="goalsBtn">Set your goals</p>
+                </div>
+            </div>
+
+            <form id="profileEditForm" action="#">
+                <div id="personalForm" class="input-boxes">
+                    <div class="input-box">
+                        <input type="text" id="name" placeholder="Full Name" required />
+                    </div>
+                    <div class="input-box">
+                        <input type="text" id="yourLocation" placeholder="Your Location" required />
+                    </div>
+                    <div class="input-box">
+                        <input type="number" id="yourAge" placeholder="Your Age" required />
+                    </div>
+                    <div class="input-box">
+                        <input type="number" id="yourHeight" placeholder="Your Height in cm" required />
+                    </div>
+                    <div class="input-box">
+                        <input type="number" id="yourWeight" placeholder="Your Weight in kg" required />
+                    </div>
+
+                    <div class="button input-box">
+                        <button type="button" id="cancel">cancel</button>
+                        <button type="button" id="save">save</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- setting goals -->
+            <form action="">
+                <div id="goalsForm" class="input-boxes2">
+                    <div class="input-box">
+                        <input type="number" id="targetSteps" placeholder="Steps per day" />
+                    </div>
+                    <div class="input-box">
+                        <input type="number" id="targetRunning" placeholder="Running per day in km" />
+                    </div>
+                    <div class="input-box">
+                        <input type="number" id="targetSleeping" placeholder="Sleep per day in hours" />
+                    </div>
+                    <div class="input-box">
+                        <input type="number" id="targetWeight" placeholder="Target weight in kg" />
+                    </div>
+                    <div class="input-box">
+                        <input type="number" id="targetWaterLevel" placeholder="Water Ltr per day" />
+                    </div>
+
+                    <div class="button input-box">
+                        <button type="button" id="cancel2">cancel</button>
+                        <button type="button" id="save2">save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <span class="sidebar-toggle">☰</span>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <img src="images/workout.png" alt="logo">
+            <ul>
+                <li class="sidebar-item">
+                    <i class="fa-solid fa-home"></i>
+                </li>
+                <li class="sidebar-item">
+                    <i class="fa-solid fa-chart-line"></i>                    
+                </li>
+                <li class="sidebar-item">
+                    <i class="fa-solid fa-walking"></i>                   
+                </li>
+                <li class="sidebar-item">
+                    <i class="fa-solid fa-message"></i>
+                </li>
+                <li class="sidebar-item">
+                    <i class="fa-solid fa-gear"></i>
+                </li>
+                <li class="sidebar-item">
+                    <i class="fa-solid fa-address-card"></i>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header class="header">
+                <div class="greeting">
+                    <p>Good Morning</p>
+                    <h1>Welcome Back 🎉</h1>
+                </div>
+                <div class="actions">
+                    <button class="subscribe">Subscribe</button>
+                    <div class="bell-icon">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+                </div>
+            </header>
+
+
+            <!-- Cards -->
+            <section class="cards">
+
+                <div class="card">
+                    <i class="fa-solid fa-walking"></i>
+                    <h3>Steps</h3>
+                    <h2 id="steps">0</h2>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-fire"></i>
+                    <h3>Water</h3>
+                    <h2 id="water">0</h2>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-water"></i>
+                    <h3>Calories</h3>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-heart"></i>
+                    <h3>Heart Rate</h3>
+                </div>
+
+            </section>
+
+            <!-- Chart Placeholder -->
+            <div class="center">
+                <div class="chart">
+                    <h3>Activity</h3>
+                    <div class="chart-inside">
+                        <div class="chart-size">
+                            <canvas id="activityChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart">
+                    <h3>Progress</h3>
+                    <div class="chart-inside">
+                        <div class="chart-size">
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- footer-box -->
+            <div class="footer-name">
+                <h3>Recommended Trainer for you</h3>
+            </div>
+            <footer class="footer">
+
+                <div class="box">
+                    <img src="images/bodybuilder-1.jpeg" alt="pic" width="250px" height="120px">
+                    <div class="box-1">
+                        <h4>Cameron Wiilliamson</h4>
+                        <p>Fitness Specialist</p>
+                    </div>
+                    <div class="view-profile">
+                        <p>View Profile</p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <img src="images/bodybuilder-2.jpeg" alt="pic" width="250px" height="120px">
+                    <div class="box-1">
+                        <h4>Johnena Anderson</h4>
+                        <p>Fitness Specialist</p>
+                    </div>
+                    <div class="view-profile">
+                        <p>View Profile</p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="meal-card">
+                        <div class="header-meal-card">
+                            <span class="meal-name">Breakfast</span>
+                            <span class="meal-time">10:00 am</span>
+                        </div>
+                        <div class="item">
+                            <img src="images/avocada-salad.jpg" alt="Avocado Salad" />
+                            <div class="details">
+                                <h3>Avocado salad</h3>
+                             
+                                <div class="nutrition">
+                                    <span class="carbs">8% carbs</span>
+                                    <span class="protein">16% protein</span>
+                                    <span class="fat">6% fat</span>
+                                </div>
+
+                                <div class="progress-bars">
+                                    <div class="bar carbs"></div>
+                                    <div class="bar protein"></div>
+                                    <div class="bar fat"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="images/blueberry.jpg" alt="Blueberry" />
+                            <div class="details">
+                                <h3>Blueberry</h3>
+                                <div class="nutrition">
+                                    <span class="carbs">8% carbs</span>
+                                    <span class="protein">16% protein</span>
+                                    <span class="fat">6% fat</span>
+                                </div>
+                                <div class="progress-bars">
+                                    <div class="bar carbs"></div>
+                                    <div class="bar protein"></div>
+                                    <div class="bar fat"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </main>
+        <div class="sideBar2">
+
+            <div class="profile">
+                <div class="profile2">
+                    <div class="profile-pic">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="a">
+                        <h4 class="username">Username</h4>
+                        <p><i class="fa-solid fa-location-dot"></i><span id="location">location</span></p>
+                    </div>
+                </div>
+                <div class="power-icon">
+                    <a href="index.html"><i class="fa-solid fa-power-off"></i></a>
+                </div>
+            </div>
+
+            <div class="percentage">
+                <b id="filledPercentage" class="card-input">0</b>
+                <p class="percentage-input">%</p>
+            </div>
+
+            <div class="profile-set">
+                <ul>
+                    <li>
+                        <div class="edit-profile-btn">
+                            <h4>Your Profile Set</h4>
+                            <button id="profile-btn">Edit Your Profile</button>
+                        </div>
+
+                    </li>
+                </ul>
+                <div class="measurement">
+                    <div class="cardss">
+                        <div class="card-item">
+                            <div class="card-value">
+                                <b class="card-input" id="weight">0</b>
+                                <span class="card-item-units">kg</span>
+                            </div>
+                            <div class="card-label">Weight</div>
+                        </div>
+                        <div class="card-item">
+                            <div class="card-value">
+                                <b class="card-input" id="height">0</b>
+                                <span class="card-item-units">cm</span>
+                            </div>
+                            <div class="card-label">Height</div>
+                        </div>
+                        <div class="card-item">
+                            <div class="card-value">
+                                <b class="card-input" id="age">0</b>
+                                <span class="card-item-units">yrs</span>
+                            </div>
+                            <div class="card-label">Age</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="goals">
+                    <h4>Your Goals</h4>
+                    <div class="works running">
+                        <img src="images/running.png" alt="running pic">
+                        <div class="units">
+                            <h5>Running</h5>
+                            <div class="units-one">
+                                <p id="running-data">0 </p>
+                                <p>km</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="works sleeping">
+                        <img src="images/sleeping.png" alt="sleeping pic">
+                        <div class="units">
+                            <h5>Sleeping</h5>
+                            <div class="units-one">
+                                <p id="sleeping-data">0 </p>
+                                <p>hrs</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="works Weight-loss">
+                        <img src="images/weight-loss.png" alt="weightLoss pic">
+                        <div class="units">
+                            <h5>Weight loss</h5>
+                            <div class="units-one">
+                                <p id="weightLoss-data">0</p>
+                                <p>kg</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="goals">
+                    <h4>Scheduled</h4>
+                    <div class="works running">
+                        <img src="images/training.png" alt="">
+                        <div class="name">
+                            <h5>Training - Yoga Class</h5>
+                            <p>Fitness</p>
+                        </div>
+                    </div>
+                    <div class="works sleeping">
+                        <img src="images/training.png" alt="">
+                        <div class="name">
+                            <h5>Training - Swimming</h5>
+                            <p>Fitness</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
